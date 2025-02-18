@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento via PIX - MegaFiles</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            width: 80%;
+            max-width: 400px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .qr-code {
+            margin-top: 20px;
+        }
+
+        .payment-button {
+            background: #25D366;
+            border: none;
+            padding: 15px 30px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .payment-button:hover {
+            background: #128C7E;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎉 Acesso ao Conteúdo Secreto</h1>
+        <p>Para acessar <strong>4564GB de vídeos</strong> e <strong>9764GB de fotos</strong>, pague uma taxa de R$100.</p>
+        <p>Escolha o pagamento via PIX abaixo para completar a transação:</p>
+
+        <!-- Exibindo o QR Code PIX -->
+        <div class="qr-code">
+            <img id="qrCode" src="" alt="QR Code PIX" width="300">
+        </div>
+
+        <button class="payment-button" id="payButton">Pagar Agora</button>
+
+    </div>
+
+    <script>
+        // Função para obter a URL do QR Code PIX do backend
+        async function getPaymentQR() {
+            try {
+                const response = await fetch('/create-payment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({}) // Enviar dados necessários para criação do pagamento
+                });
+
+                const data = await response.json();
+                if (data.qrCodeUrl) {
+                    document.getElementById('qrCode').src = data.qrCodeUrl;
+                }
+            } catch (error) {
+                console.error('Error fetching payment QR:', error);
+            }
+        }
+
+        // Ao carregar a página, chama a função que gera o QR Code
+        window.onload = function() {
+            getPaymentQR();
+        };
+
+        // Redireciona automaticamente após o pagamento ser aprovado
+        document.getElementById('payButton').addEventListener('click', function () {
+            window.location.href = 'https://seusite.com/success'; // Redireciona para a página de sucesso após pagamento
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔓 Acesso Exclusivo</title>
+
+    <!-- Meta Tags para WhatsApp -->
+    <meta property="og:title" content="🔥 Conteúdo Exclusivo 🔥">
+    <meta property="og:description" content="Descubra um conteúdo especial que poucos têm acesso! Clique abaixo para liberar.">
+    <meta property="og:image" content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2mwe6bn7S1MHf0WtSPMMeUSGPhCyWlwp-Lg&usqp=CAU">
+    <meta property="og:url" content="https://seusite.com/exclusivo">
+    <meta name="theme-color" content="#25D366">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: url('https://i.postimg.cc/0NzzVHcn/IMG-20250214-WA0000.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            padding: 20px;
+            color: white;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(3px);
+            background: rgba(0, 0, 0, 0.2);
+            z-index: -1;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 255, 0, 0.3);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        h1 {
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .button {
+            display: inline-block;
+            width: 90%;
+            max-width: 280px;
+            padding: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 10px 0;
+        }
+
+        .share-btn {
+            background: #25D366;
+            box-shadow: 0px 0px 10px rgba(0, 255, 0, 0.6);
+        }
+
+        .share-btn:hover {
+            background: #1da851;
+        }
+
+        .access-btn {
+            background: #ff0000;
+            box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.6);
+            display: none;
+        }
+
+        .access-btn:hover {
+            background: #cc0000;
+        }
+
+        .disabled {
+            background: #777 !important;
+            cursor: not-allowed;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🔥 Acesso Exclusivo 🔥</h1>
+        <p>Compartilhe esta mensagem com 3 grupos no WhatsApp para liberar o acesso!</p>
+
+        <!-- Botão de compartilhar -->
+        <a id="shareButton" class="button share-btn" onclick="compartilharWhatsApp()">📤 Compartilhar</a>
+
+        <!-- Botão de acesso (inicialmente oculto) -->
+        <a id="accessButton" class="button access-btn" href="file:///C:/Users/PC/Desktop/ctt/number.html" target="_blank">🔓 Acessar Conteúdo</a>
+    </div>
+
+    <script>
+        let compartilhamentos = 0;
+        let podeCompartilhar = true; // Variável para controlar o delay de clique
+
+        function compartilharWhatsApp() {
+            if (!podeCompartilhar) {
+                alert("Espere 10 segundos antes de compartilhar novamente!");
+                return;
+            }const urlPagina = window.location.href;
+            const mensagem = encodeURIComponent("🔥 Acesse um conteúdo exclusivo 🔥\n\n🔗 Clique aqui: " + urlPagina);
+
+            window.open("https://api.whatsapp.com/send?text=" + mensagem, "_blank");
+
+            compartilhamentos++;
+
+            // Bloqueia cliques rápidos e libera depois de 10 segundos
+            podeCompartilhar = false;
+            document.getElementById("shareButton").classList.add("disabled");
+            setTimeout(() => {
+                podeCompartilhar = true;
+                document.getElementById("shareButton").classList.remove("disabled");
+            }, 10000);
+
+            if (compartilhamentos >= 3) {
+                document.getElementById("accessButton").style.display = "inline-block";
+                document.getElementById("shareButton").innerText = "✅ Compartilhado";
+                document.getElementById("shareButton").classList.add("disabled");
+                document.getElementById("shareButton").onclick = null;
+            }
+        }
+    </script>
+
+</body>
+</html>
